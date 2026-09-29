@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Día de los Carritos Hot Wheels! 🚗💘 </title>
+    
+    <!-- Etiquetas para que WhatsApp muestre una vista previa bonita -->
+    <meta property="og:title" content="¡Feliz Día de los Carritos Hot Wheels! 🏎️✨">
+    <meta property="og:description" content="Un detallito especial hecho con todo el corazón para ti. Toca para abrir tu ramo. 💘 ">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0814;
+            --accent-neon: #ff0055;
+            --accent-glow: #00d4ff;
+            --gold: #ffd700;
+            --text-light: #f0f0f8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: radial-gradient(circle at center, #1a022f 0%, #080511 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Pantalla de Carga Inicial */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: opacity 0.8s ease;
+        }
+
+        .loader-title {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--accent-glow);
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .progress-container {
+            width: 80%;
+            max-width: 300px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .progress-bar {
+            width: 18%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-neon), var(--accent-glow));
+            transition: width 0.15s ease;
+        }
+
+        .progress-text {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: var(--gold);
+            font-weight: 800;
+        }
+
+        /* Contenido Principal del Ramo */
+        #main-content {
+            opacity: 0;
+            transition: opacity 1s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .visible {
+            opacity: 1 !important;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 5px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            opacity: 0.9;
+        }
+
+        /* Estilo del Ramo */
+        .bouquet-container {
+            position: relative;
+            width: 300px;
+            height: 350px;
+            margin: 10px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wrapper-bow {
+            position: absolute;
+            bottom: 10px;
+            width: 80px;
+            height: 50px;
+            background: linear-gradient(135deg, #ff0055, #ff5e99);
+            border-radius: 50%;
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(255, 0, 85, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 0.75rem;
+        }
+
+        .car-flower {
+            position: absolute;
+            width: 85px;
+            height: 85px;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.7));
+            animation: floatCar 3s ease-in-out infinite alternate;
+            transition: transform 0.3s ease;
+        }
+
+        .car-flower:hover {
+            transform: scale(1.15);
+        }
+
+        /* Posiciones armónicas para las 6 imágenes */
+        .c1 { top: 5px; left: 105px; animation-delay: 0s; }
+        .c2 { top: 60px; left: 25px; animation-delay: 0.4s; }
+        .c3 { top: 60px; right: 25px; animation-delay: 0.8s; }
+        .c4 { top: 140px; left: 10px; animation-delay: 1.2s; }
+        .c5 { top: 140px; right: 10px; animation-delay: 1.6s; }
+        .c6 { top: 120px; left: 105px; animation-delay: 2.0s; width: 95px; height: 95px; }
+
+        @keyframes floatCar {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-7px) rotate(2deg); }
+        }
+
+        /* Tarjeta de Mensaje Emotivo */
+        .message-card {
+            background: rgba(25, 15, 45, 0.85);
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            border-radius: 15px;
+            padding: 18px;
+            margin-top: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            width: 100%;
+        }
+
+        .message-card p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #dcd6f7;
+            margin-bottom: 8px;
+        }
+
+        .message-card p:last-child {
+            margin-bottom: 0;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .Hot_Wheels {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--accent-neon);
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loading-screen">
+        <div class="loader-title">Cargando tu ramo de Hot Wheels...</div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-text" id="progressText">18%</div>
+    </div>
+
+    <div id="main-content">
+        <div class="Hot_Wheels">Hot Wheels Special Edition</div>
+        <h1>¡Feliz Día!</h1>
+        <p class="subtitle">Mientras este en mis manos no serás espectador 🏎️✨</p>
+
+        <div class="bouquet-container">
+            <div class="wrapper-bow">Te Amo</div>
+
+            <img src="1000120574-removebg-preview.png" alt="Carro 1" class="car-flower c1">
+            <img src="1000120575-removebg-preview.png" alt="Carro 2" class="car-flower c2">
+            <img src="1000120576-removebg-preview.png" alt="Carro 3" class="car-flower c3">
+            <img src="1000120581-removebg-preview.png" alt="Carro 4" class="car-flower c4">
+            <img src="1000120582-removebg-preview.png" alt="Carro 5" class="car-flower c5">
+            <img src="1000120583-removebg-preview.png" alt="Carro 6" class="car-flower c6">
+        </div>
+
+        <div class="message-card">
+            <p>“Te daría cada pedacito de mi corazón para arreglar hasta el más mínimo dolor.”</p>
+            <p>A pesar de la distancia entre nosotros, te sigo amando. 💘 </p>
+        </div>
+    </div>
+
+    <script>
+        let width = 18;
+        const bar = document.getElementById('progressBar');
+        const text = document.getElementById('progressText');
+        const loadingScreen = document.getElementById('loading-screen');
+        const mainContent = document.getElementById('main-content');
+
+        const interval = setInterval(() => {
+            if (width >= 100) {
+                clearInterval(interval);
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    mainContent.classList.add('visible');
+                }, 800);
+            } else {
+                width += Math.floor(Math.random() * 6) + 3;
+                if (width > 100) width = 100;
+                bar.style.width = width + '%';
+                text.innerText = width + '%';
+            }
+        }, 90);
+    </script>
+</body>
+</html>
